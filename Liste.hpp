@@ -33,7 +33,7 @@ public:
 		elements.push_back(element);
 		nElements_++;
 	}
-	asdz
+	asdzsz
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const         { return nElements_; }
 	unsigned getCapacite() const  { return capacite_; }
