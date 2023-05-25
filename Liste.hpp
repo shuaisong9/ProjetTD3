@@ -27,12 +27,13 @@ public:
 		// Operateur de copie pour regler probleme de build: 
 		// Attempting to reference a deleted function 
 
-
+	//
 	//TODO: Méthode pour ajouter un élément à la liste
 	void ajouterElement(const std::shared_ptr<T>& element) {
 		elements.push_back(element);
 		nElements_++;
 	}
+	asdz
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const         { return nElements_; }
 	unsigned getCapacite() const  { return capacite_; }
