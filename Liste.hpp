@@ -18,10 +18,14 @@ public:
 		elements_ = make_unique<shared_ptr<T>[]>(capacite_);
 	}
 
-	T operator[] (int index) {	// const ou non??
-		return *elements_[index].get();
+	shared_ptr<T> operator[] (unsigned index) const {	// const ou non??
+		return elements_[index];
 	}
-
+	shared_ptr<T> operator[] (unsigned index) {	// const ou non??
+		return elements_[index];
+	}
+		// Operateur de copie pour regler probleme de build: 
+		// Attempting to reference a deleted function 
 
 
 	//TODO: Méthode pour ajouter un élément à la liste
@@ -33,6 +37,22 @@ public:
 	//TODO: Méthode pour changer la capacité de la liste
 
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
+	template <typename Conteneur, typename PredicatUnaire>
+	auto trouverElement(const Conteneur& valeurs, const PredicatUnaire& critere)
+	{
+		auto iter = std::ranges::find_if(valeurs, critere);
+		return (iter != valeurs.end()) ? *it : nullptr;
+		// Return: reference à smartPtr
+	}
+
+	template <typename PredicatUnaire>
+	auto trouverElement2(const PredicatUnaire& critere)
+	{
+		auto iter = std::ranges::find_if(elements_, critere);
+		return (iter != elements_.end()) ? *it : nullptr;
+		// Return: reference à smartPtr
+	}
+
 
 private:
 	unsigned nElements_;

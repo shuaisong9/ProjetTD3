@@ -31,7 +31,21 @@ string lireString(istream& fichier)
 shared_ptr<Concepteur> chercherConcepteur(Liste<Jeu>& listeJeux, string nom)
 {
 	//TODO: Compléter la fonction (équivalent de trouverDesigner du TD2).
-	return {};
+	for (unsigned int i = 0; i < listeJeux.size(); i++) {		
+		shared_ptr<Jeu> ptrJeu = listeJeux[i]; // Pas faire copie...
+		unsigned nbreConcepteurs = ptrJeu->getListeConcepteurs().size();
+		
+		for (unsigned int j = 0; j < nbreConcepteurs; j++) {
+			shared_ptr<Concepteur> ptrConcepteur = ptrJeu->getListeConcepteurs()[j];
+			
+			//Designer* designer = jeu->designers.elements[j];
+			//if (designer->nom == nomDesigner) {
+			//	return designer;
+			//}
+		}
+	}
+	return nullptr;
+	
 }
 
 shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)

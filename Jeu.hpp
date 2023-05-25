@@ -5,10 +5,15 @@
 #include <memory>
 #include <functional>
 
+using namespace std;
+
 class Jeu
 {
 public:
 	//TODO: un constructeur par défaut et un constructeur paramétré.
+	Jeu();
+	Jeu(string titre, unsigned annneSortie, string developpeur);
+	~Jeu();
 
 	const std::string& getTitre() const     { return titre_; }
 	void setTitre(const std::string& titre) { titre_ = titre; }
@@ -18,8 +23,14 @@ public:
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
+	const Liste<Concepteur>& getListeConcepteurs() const { return listeConcepteurs_; }
+		// Ajouter surchage d'operateur [] ??	
+
 
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
+	template <typename PredicatUnaire>
+	auto trouverConcepteur(const PredicatUnaire& critere);
+
 
 private:
 	std::string titre_;
@@ -27,4 +38,6 @@ private:
 	std::string developpeur_;
 	//TODO: Attribut de la liste des concepteurs du jeu
 		// ptrIntelligent 
+	Liste<Concepteur> listeConcepteurs_;
+
 };
