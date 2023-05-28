@@ -1,18 +1,16 @@
 #pragma once
 #include <string>
-
+#include <memory>
+#include "Jeu.hpp"
+using namespace std;
 class Concepteur
 {
 public:
 	//TODO: Un constructeur par défaut et un constructeur paramétré.
-	Concepteur() {}
-	Concepteur(string nom, unsigned anneeNaissance, string pays) { 
-		nom_ = nom;
-		anneeNaissance_ = anneeNaissance;
-		pays_ = pays;			
+	Concepteur() = default;
+	Concepteur(const std::string& nom, int anneeNaissance, const std::string& pays) : nom_(nom), anneeNaissance_(anneeNaissance), pays_(pays)
+	{
 	}
-
-
 
 	const std::string& getNom() const     { return nom_; }
 	void setNom(const std::string& nom)   { nom_ = nom; }
@@ -26,3 +24,4 @@ private:
 	unsigned anneeNaissance_;
 	std::string pays_;
 };
+std::shared_ptr<Concepteur> chercherConcepteur(Liste<Jeu>& listeJeux, std::string nom);

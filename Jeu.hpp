@@ -7,13 +7,20 @@
 
 using namespace std;
 
+class Concepteur;
+
 class Jeu
 {
 public:
 	//TODO: un constructeur par défaut et un constructeur paramétré.
-	Jeu();
-	Jeu(string titre, unsigned annneSortie, string developpeur);
-	~Jeu();
+	Jeu() 
+	{
+	}
+	//Jeu(string titre, unsigned annneSortie, string developpeur);
+	Jeu(const std::string& titre, unsigned anneeSortie, const std::string& developpeur) : titre_(titre), anneeSortie_(anneeSortie), developpeur_(developpeur)
+	{
+	}
+	//~Jeu();
 
 	const std::string& getTitre() const     { return titre_; }
 	void setTitre(const std::string& titre) { titre_ = titre; }
@@ -23,8 +30,9 @@ public:
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
-	const Liste<Concepteur>& getListeConcepteurs() const { return listeConcepteurs_; }
+	 Liste<Concepteur>& getListeConcepteurs();
 		// Ajouter surchage d'operateur [] ??	
+	void ajouterConcepteur(const std::shared_ptr<Concepteur>& concepteur);
 
 
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.

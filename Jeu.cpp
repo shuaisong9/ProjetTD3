@@ -1,18 +1,14 @@
 #include "Jeu.hpp"
 
-Jeu::Jeu() {
+Jeu::Jeu() : anneeSortie_(0)
+{
 	// Contructeur de Liste devrait etre deja appele?
 	//listeConcepteurs_ = {};
-	titre_ = "";
-	anneeSortie_ = 0;
-	developpeur_ = "";
 	// QUOI METTRE DANS LE CONSTRUCTEUR PAR DEFAUT?
 }
 
-Jeu::Jeu(string titre, unsigned annneSortie, string developpeur) {
-	titre_ = titre;
-	anneeSortie_ = annneSortie;
-	developpeur_ = developpeur;
+Jeu::Jeu(const string& titre, unsigned anneeSortie, const string& developpeur) : titre_(titre), anneeSortie_(anneeSortie), developpeur_(developpeur)
+{
 }
 
 
@@ -32,7 +28,10 @@ auto Jeu::trouverConcepteur(const PredicatUnaire& critere)
 	// Return: reference à smartPtr
 }
 
-
+Liste<Concepteur>& Jeu::getListeConcepteurs() 
+{
+	return listeConcepteurs_;//??
+}
 
 template <typename Conteneur, typename PredicatUnaire>
 auto trouver_si2(const Conteneur& valeurs, const PredicatUnaire& critere)
