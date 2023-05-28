@@ -25,7 +25,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 		"\033[0m\n";
 	
 
-	cout << lj[2].getTitre() << endl;
+	cout << lj[2]->getTitre() << endl;
+	lj[2]->trouverConcepteur([](auto c) {return c.getNom() == "NOM"; });
+
 	//cout << lj[1].det
 
 

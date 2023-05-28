@@ -23,13 +23,15 @@ public:
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
-	const Liste<Concepteur>& getListeConcepteurs() const { return listeConcepteurs_; }
+	Liste<Concepteur>& getListeConcepteurs() { return listeConcepteurs_; } // erased const before {}
 		// Ajouter surchage d'operateur [] ??	
 
 
+
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
-	template <typename PredicatUnaire>
-	auto trouverConcepteur(const PredicatUnaire& critere);
+	shared_ptr<Concepteur> trouverConcepteur(function <bool(Concepteur&)> critere) {
+		return getListeConcepteurs().trouver(critere);
+	}
 
 
 private:

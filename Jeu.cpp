@@ -6,7 +6,6 @@ Jeu::Jeu() {
 	titre_ = "";
 	anneeSortie_ = 0;
 	developpeur_ = "";
-	// QUOI METTRE DANS LE CONSTRUCTEUR PAR DEFAUT?
 }
 
 Jeu::Jeu(string titre, unsigned annneSortie, string developpeur) {
@@ -24,29 +23,21 @@ Jeu::~Jeu() {
 
 
 
-template <typename PredicatUnaire>
-auto Jeu::trouverConcepteur(const PredicatUnaire& critere)
-{
-	//auto iter = std::ranges::find_if(..., critere);
-	//return (iter != valeurs.end()) ? *it : nullptr;
-	// Return: reference à smartPtr
-}
 
 
+// Essaies pour fonction trouverConcepteur()
 
-template <typename Conteneur, typename PredicatUnaire>
-auto trouver_si2(const Conteneur& valeurs, const PredicatUnaire& critere)
-{
-	auto iter = std::ranges::find_if(valeurs, critere);
-	return (iter != valeurs.end()) ? *it : nullptr;
-	// Return: reference à smartPtr
-}
-
-
-
-template <typename Container, typename Predicate>
-auto findElement(const Container& container, Predicate pred)
-{
-	auto it = std::ranges::find_if(container, pred);
-	return (it != container.end()) ? &(*it) : nullptr;
-}
+//template <typename Conteneur, typename PredicatUnaire>
+//auto trouver_si2(const Conteneur& valeurs, const PredicatUnaire& critere)
+//{
+//	auto iter = std::ranges::find_if(valeurs, critere);
+//	return (iter != valeurs.end()) ? *it : nullptr;
+//	// Return: reference à smartPtr
+//}
+//
+//template <typename Container, typename Predicate>
+//auto findElement(const Container& container, Predicate pred)
+//{
+//	auto it = std::ranges::find_if(container, pred);
+//	return (it != container.end()) ? &(*it) : nullptr;
+//}

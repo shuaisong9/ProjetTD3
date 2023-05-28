@@ -1,11 +1,16 @@
 #pragma once
 #include <string>
+using namespace std;
 
 class Concepteur
 {
 public:
 	//TODO: Un constructeur par défaut et un constructeur paramétré.
-	Concepteur() {}
+	Concepteur() {
+		nom_ = "";
+		anneeNaissance_ = 0;
+		pays_ = "";
+	}
 	Concepteur(string nom, unsigned anneeNaissance, string pays) { 
 		nom_ = nom;
 		anneeNaissance_ = anneeNaissance;
