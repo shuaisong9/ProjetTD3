@@ -29,12 +29,6 @@
     <ClCompile Include="lectureFichierJeux.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Jeu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Concepteur.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
