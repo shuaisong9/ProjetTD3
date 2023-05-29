@@ -62,7 +62,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 
 	// Tester la méthode trouverConcepteur()
-	string nom = "Yoshinori Kitase";
 	shared_ptr<Concepteur> ptr1 = lj[0]->trouverConcepteur([](auto c) { return c.getNom() == "Yoshinori Kitase"; });
 	shared_ptr<Concepteur> ptr2 = lj[1]->trouverConcepteur([](auto c) { return c.getNom() == "Yoshinori Kitase"; });
 
@@ -71,13 +70,38 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 	// Tester la copie
 	Jeu copieJeu = *lj[2];
-	copieJeu.getListeConcepteurs()[2];  //= copieJeu.getListeConcepteurs()[0]; // shared_ptr<Concepteur> = shared_ptr<Concepteur>
-	
+	copieJeu.getListeConcepteurs()[2] = make_shared<Concepteur>(*copieJeu.getListeConcepteurs()[0]); // shared_ptr<Concepteur> = shared_ptr<Concepteur>
+	// OU
+	copieJeu.getListeConcepteurs()[2] = copieJeu.getListeConcepteurs()[0];
+
+		// Changer les parametres manuellement
+	string nom = copieJeu.getListeConcepteurs()[0]->getNom();
+	int annee = copieJeu.getListeConcepteurs()[0]->getAnneeNaissance();
+	string pays = copieJeu.getListeConcepteurs()[0]->getPays();
+
+	copieJeu.getListeConcepteurs()[2]->setNom(nom);  
+	copieJeu.getListeConcepteurs()[2]->setAnneeNaissance(annee);
+	copieJeu.getListeConcepteurs()[2]->setPays(pays);
+
+
+
+	cout << *copieJeu.getListeConcepteurs()[2] << endl;
+	cout << *copieJeu.getListeConcepteurs()[0] << endl;
+
+
+
 	cout << "Jeu initial: " << endl;
 	cout << *lj[2] << endl;
 	cout << "Copie du jeu intial, avec changement: " << endl;
 	cout << copieJeu << endl;
-	cout << copieJeu.getListeConcepteurs()[2] << endl;
+
+
+	cout << copieJeu.getListeConcepteurs()[1] << endl;
+	cout << lj[2]->getListeConcepteurs()[1] << endl;
+	//copieJeu.getListeConcepteurs()[2] = lj[2]->getListeConcepteurs()[2];
+	//cout << copieJeu.getListeConcepteurs()[2] << endl;
+
+
 
 
 

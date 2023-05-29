@@ -31,7 +31,8 @@ public:
 			//unique_ptr<shared_ptr<T>[]> newElements_ = make_unique<shared_ptr<T>[]>(capacite_);
 			elements_ = make_unique<shared_ptr<T>[]>(capacite_);
 			for (unsigned i = 0; i < nElements_; i++) {
-				//shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
+				/*shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
+				elements_[i] = newElem;*/
 				elements_[i] = autreListe.elements_[i];
 			}			
 			return *this;
@@ -39,9 +40,9 @@ public:
 	}
 
 	// Surcharge d'opérateur []
-	shared_ptr<T> operator[] (unsigned index) const {	// const ou non??
-		return elements_[index];
-	}
+	//shared_ptr<T> operator[] (unsigned index) const {	// const ou non??
+	//	return elements_[index];
+	//}
 	shared_ptr<T> operator[] (unsigned index) {	
 		return elements_[index];
 	}
