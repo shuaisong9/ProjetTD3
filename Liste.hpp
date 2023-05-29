@@ -11,7 +11,7 @@ template <typename T>
 class Liste
 {
 public:
-	//TODO: Constructeurs et surcharges d'opérateurs
+	//TODO: Constructeurs et surcharges d'opï¿½rateurs
 	Liste() {
 		nElements_ = 0;
 		capacite_ = 1;
@@ -28,25 +28,38 @@ public:
 		// Attempting to reference a deleted function 
 
 	//
-	//TODO: Méthode pour ajouter un élément à la liste
+	//TODO: Mï¿½thode pour ajouter un ï¿½lï¿½ment ï¿½ la liste
 	void ajouterElement(const std::shared_ptr<T>& element) {
 		elements.push_back(element);
 		nElements_++;
 	}
-	asdzsz
-	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
+
+	// Pour size, on utilise le mï¿½me nom que les accesseurs de la bibliothï¿½que standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const         { return nElements_; }
 	unsigned getCapacite() const  { return capacite_; }
 
-	//TODO: Méthode pour changer la capacité de la liste
+	//TODO: Mï¿½thode pour changer la capacitï¿½ de la liste
 
-	//TODO: Méthode pour trouver une élément selon un critère (lambda).
+    void changerCapacite(int nouvelleCapacite){
+        auto nouvelle_list = make_unique<T[]>(nouvelleCapacite);
+        if(elements_!= nullptr){
+            nElements_ = min(nouvelleCapacite, nElements_){
+                for(int i=0; i<nElements_; i++){
+                    nouvelle_list[i] = move(elements_[i]);
+                }
+            }
+        }
+        elements_ =move(nouvelleCapacite);
+        capacite_ = nouvelleCapacite;
+    }
+
+	//TODO: Mï¿½thode pour trouver une ï¿½lï¿½ment selon un critï¿½re (lambda).
 	template <typename Conteneur, typename PredicatUnaire>
 	auto trouverElement(const Conteneur& valeurs, const PredicatUnaire& critere)
 	{
 		auto iter = std::ranges::find_if(valeurs, critere);
 		return (iter != valeurs.end()) ? *it : nullptr;
-		// Return: reference à smartPtr
+		// Return: reference ï¿½ smartPtr
 	}
 
 	template <typename PredicatUnaire>
@@ -54,14 +67,14 @@ public:
 	{
 		auto iter = std::ranges::find_if(elements_, critere);
 		return (iter != elements_.end()) ? *it : nullptr;
-		// Return: reference à smartPtr
+		// Return: reference ï¿½ smartPtr
 	}
 
 
 private:
 	unsigned nElements_;
 	unsigned capacite_;
-	//TODO: Attribut contenant les éléments de la liste.
+	//TODO: Attribut contenant les ï¿½lï¿½ments de la liste.
 	unique_ptr<shared_ptr<T>[]> elements_;
 
 	//vector<unique_ptr<Item>> items;
