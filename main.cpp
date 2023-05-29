@@ -71,11 +71,13 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 	// Tester la copie
 	Jeu copieJeu = *lj[2];
-	copieJeu.getListeConcepteurs()[2] = copieJeu.getListeConcepteurs()[0];
+	copieJeu.getListeConcepteurs()[2];  //= copieJeu.getListeConcepteurs()[0]; // shared_ptr<Concepteur> = shared_ptr<Concepteur>
+	
 	cout << "Jeu initial: " << endl;
 	cout << *lj[2] << endl;
 	cout << "Copie du jeu intial, avec changement: " << endl;
 	cout << copieJeu << endl;
+	cout << copieJeu.getListeConcepteurs()[2] << endl;
 
 
 

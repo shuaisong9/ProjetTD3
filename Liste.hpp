@@ -28,12 +28,12 @@ public:
 			nElements_ = autreListe.nElements_;
 			capacite_ = autreListe.capacite_;
 
-			unique_ptr<shared_ptr<T>[]> newElements_ = make_unique<shared_ptr<T>[]>(capacite_);
+			//unique_ptr<shared_ptr<T>[]> newElements_ = make_unique<shared_ptr<T>[]>(capacite_);
+			elements_ = make_unique<shared_ptr<T>[]>(capacite_);
 			for (unsigned i = 0; i < nElements_; i++) {
 				//shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
-				newElements_[i] = autreListe.elements_[i];
-			}
-
+				elements_[i] = autreListe.elements_[i];
+			}			
 			return *this;
 		}
 	}
