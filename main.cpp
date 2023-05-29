@@ -9,6 +9,38 @@
 using namespace std;
 
 //TODO: Vos surcharges d'opérateur <<
+ostream& operator<<(ostream& os, Concepteur& concepteur) {
+	
+	os << "\t" << concepteur.getNom() << ", " << concepteur.getAnneeNaissance() << ", " 
+	<< concepteur.getPays()	<< endl;
+	return os;
+}
+
+ostream& operator<<(ostream& os, Liste<Concepteur>& listeConcepteurs) {
+	for (unsigned i = 0; i < listeConcepteurs.size(); i++) {
+		os << *listeConcepteurs[i]; //??
+	}
+	return os;
+}
+
+ostream& operator<<(ostream& os, Jeu& jeu) { // const ??
+	os << "Titre : " << jeu.getTitre()<< endl;
+	os << "Parution : " << jeu.getAnneeSortie() << endl;
+	os << "Developpeur: " << jeu.getDeveloppeur() << endl;
+	os << "Concepteurs du jeu :" << endl;
+	os << jeu.getListeConcepteurs() << endl;
+
+	return os;
+}
+
+
+ostream& operator<<(ostream& os, Liste<Jeu>& listeJeux) {
+	for (unsigned i = 0; i < listeJeux.size(); i++) {
+		os << *listeJeux[i]; //??
+	}
+	return os;
+}
+
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 {
@@ -25,10 +57,28 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 		"\033[0m\n";
 	
 
-	cout << lj[2]->getTitre() << endl;
-	lj[2]->trouverConcepteur([](auto c) { return c.getNom() == "NOM"; });
+	//cout << lj[2]->getTitre() << endl;
+	cout << lj;
 
-	//cout << lj[1].det
+
+	// Tester la méthode trouverConcepteur()
+	string nom = "Yoshinori Kitase";
+	shared_ptr<Concepteur> ptr1 = lj[0]->trouverConcepteur([](auto c) { return c.getNom() == "Yoshinori Kitase"; });
+	shared_ptr<Concepteur> ptr2 = lj[1]->trouverConcepteur([](auto c) { return c.getNom() == "Yoshinori Kitase"; });
+
+	cout << ptr1 << endl; 
+	cout << ptr2 << endl; // C'est bien le même pointeur 
+
+	// Tester la copie
+	Jeu copieJeu = *lj[2];
+	copieJeu.getListeConcepteurs()[2];  //= copieJeu.getListeConcepteurs()[0]; // shared_ptr<Concepteur> = shared_ptr<Concepteur>
+	
+	cout << "Jeu initial: " << endl;
+	cout << *lj[2] << endl;
+	cout << "Copie du jeu intial, avec changement: " << endl;
+	cout << copieJeu << endl;
+	cout << copieJeu.getListeConcepteurs()[2] << endl;
+
 
 
 	//TODO: Les l'affichage et l'écriture dans le fichier devraient fonctionner.

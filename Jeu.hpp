@@ -15,12 +15,21 @@ public:
 		titre_ = "";
 		anneeSortie_ = 0;
 		developpeur_ = "";
+		//listeConcepteurs_ = 
 	}
 
 	Jeu(string titre, unsigned annneSortie, string developpeur) {
 		titre_ = titre;
 		anneeSortie_ = annneSortie;
 		developpeur_ = developpeur;
+	}
+
+	// Constructeur de copie
+	Jeu(Jeu& autreJeu) {
+		titre_ = autreJeu.titre_;
+		anneeSortie_ = autreJeu.anneeSortie_;
+		developpeur_ = autreJeu.developpeur_;
+		listeConcepteurs_ = autreJeu.listeConcepteurs_;
 	}
 
 	const std::string& getTitre() const     { return titre_; }
@@ -48,7 +57,6 @@ private:
 	unsigned anneeSortie_;
 	std::string developpeur_;
 	//TODO: Attribut de la liste des concepteurs du jeu
-		// ptrIntelligent 
 	Liste<Concepteur> listeConcepteurs_;
 
 };

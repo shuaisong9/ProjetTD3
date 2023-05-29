@@ -18,10 +18,31 @@ public:
 		elements_ = make_unique<shared_ptr<T>[]>(capacite_);
 	}
 
+	// Constructeur de copie
+	Liste(Liste &autreListe) {
+		*this = autreListe;
+	}
+	// Surcharge d'opérateur =
+	Liste& operator= (Liste& autreListe) {
+		if (this != &autreListe) {
+			nElements_ = autreListe.nElements_;
+			capacite_ = autreListe.capacite_;
+
+			//unique_ptr<shared_ptr<T>[]> newElements_ = make_unique<shared_ptr<T>[]>(capacite_);
+			elements_ = make_unique<shared_ptr<T>[]>(capacite_);
+			for (unsigned i = 0; i < nElements_; i++) {
+				//shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
+				elements_[i] = autreListe.elements_[i];
+			}			
+			return *this;
+		}
+	}
+
+	// Surcharge d'opérateur []
 	shared_ptr<T> operator[] (unsigned index) const {	// const ou non??
 		return elements_[index];
 	}
-	shared_ptr<T> operator[] (unsigned index) {	// const ou non??
+	shared_ptr<T> operator[] (unsigned index) {	
 		return elements_[index];
 	}
 		// Operateur = pour regler probleme de build: 
@@ -54,7 +75,7 @@ public:
 		auto nouvelElements = make_unique<shared_ptr<T>[]>(nouvelleCapacite);
 		for (unsigned int i = 0; i < nElements_; i++)
 		{
-			nouvelElements[i] = elements_[i];
+			nouvelElements[i] = elements_[i]; // memes pointeurs -- c'est ca qu'on veut
 		}
 
 		elements_ = move(nouvelElements);
