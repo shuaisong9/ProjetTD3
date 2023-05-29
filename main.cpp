@@ -26,7 +26,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 	
 
 	cout << lj[2]->getTitre() << endl;
-	lj[2]->trouverConcepteur([](auto c) {return c.getNom() == "NOM"; });
+	lj[2]->trouverConcepteur([](auto c) { return c.getNom() == "NOM"; });
 
 	//cout << lj[1].det
 

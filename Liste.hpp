@@ -30,22 +30,48 @@ public:
 
 	//
 	//TODO: Méthode pour ajouter un élément à la liste
-	//void ajouterElement(const std::shared_ptr<T>& element) {
-	//	elements.push_back(element);
-	//	nElements_++;
-	//}
+	void ajouterElement(const std::shared_ptr<T>& element) {
+		if (nElements_ >= capacite_) {
+			augmenterCapacite();
+		}
+
+		elements_[nElements_] = element;
+		nElements_++;
+	}
 	
 	// Pour size, on utilise le même nom que les accesseurs de la bibliothèque standard, qui permet d'utiliser certaines fonctions de la bibliotheque sur cette classe.
 	unsigned size() const         { return nElements_; }
 	unsigned getCapacite() const  { return capacite_; }
 
 	//TODO: Méthode pour changer la capacité de la liste
+	void changerCapacite(unsigned int nouvelleCapacite)
+	{
+		if (nouvelleCapacite <= capacite_)
+		{
+			return;  // La nouvelle capacité doit être supérieure à l'ancienne
+		}
+
+		auto nouvelElements = make_unique<shared_ptr<T>[]>(nouvelleCapacite);
+		for (unsigned int i = 0; i < nElements_; i++)
+		{
+			nouvelElements[i] = elements_[i];
+		}
+
+		elements_ = move(nouvelElements);
+		capacite_ = nouvelleCapacite;
+	}
+
+	void augmenterCapacite()
+	{
+		unsigned int nouvelleCapacite = capacite_ * 2;
+		changerCapacite(nouvelleCapacite);
+	}
 
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 	shared_ptr<T> trouver(function <bool(T&)> critere) {
 		for (unsigned i = 0; i < this->size(); i++) {
-			if (critere(*(*this)[i])) {		// 
-				return (*this)[i];
+			if (critere(*elements_[i])) {		// 
+				return elements_[i];
 			}
 		}
 		// Si va trouve: return nullptr?
@@ -59,10 +85,6 @@ private:
 	unsigned capacite_;
 	//TODO: Attribut contenant les éléments de la liste.
 	unique_ptr<shared_ptr<T>[]> elements_;
-
-	//vector<unique_ptr<Item>> items;
-	//auto unItem = make_unique<Item>();
-	//items.push_back(move(unItem));
 };
 
 
