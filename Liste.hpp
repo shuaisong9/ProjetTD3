@@ -76,7 +76,17 @@ public:
 
 
 	//TODO: M�thode pour trouver une �l�ment selon un crit�re (lambda).
-	
+	shared_ptr<T> trouverCritere(const Liste<T>& liste, const function <bool(T)& critere) {
+		shared_ptr <T> ptr = nullptr;
+		for (int i = 0; liste.size(); i++) {
+			if (critere(liste.getElement()[i])) {
+				ptr = liste.getElement()[i];
+			}
+		}
+		return ptr; 
+	}
+
+
 	size_t nElements = 0;
 	size_t capacite = 0;
 
