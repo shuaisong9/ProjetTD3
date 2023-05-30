@@ -70,9 +70,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 	// Tester la copie
 	Jeu copieJeu = *lj[2];
-	copieJeu.getListeConcepteurs()[2] = make_shared<Concepteur>(*copieJeu.getListeConcepteurs()[0]); // shared_ptr<Concepteur> = shared_ptr<Concepteur>
-	// OU
-	copieJeu.getListeConcepteurs()[2] = copieJeu.getListeConcepteurs()[0];
+	//copieJeu.getListeConcepteurs()[2] = make_shared<Concepteur>(*copieJeu.getListeConcepteurs()[0]); 	// OU
+	//copieJeu.getListeConcepteurs()[2] = copieJeu.getListeConcepteurs()[0];
 
 		// Changer les parametres manuellement
 	string nom = copieJeu.getListeConcepteurs()[0]->getNom();
@@ -83,13 +82,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 	copieJeu.getListeConcepteurs()[2]->setAnneeNaissance(annee);
 	copieJeu.getListeConcepteurs()[2]->setPays(pays);
 
-
-
-	cout << *copieJeu.getListeConcepteurs()[2] << endl;
-	cout << *copieJeu.getListeConcepteurs()[0] << endl;
-
-
-
+	cout << endl;
+	cout << "Tester la copie!" << endl;
 	cout << "Jeu initial: " << endl;
 	cout << *lj[2] << endl;
 	cout << "Copie du jeu intial, avec changement: " << endl;
@@ -98,11 +92,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 
 	cout << copieJeu.getListeConcepteurs()[1] << endl;
 	cout << lj[2]->getListeConcepteurs()[1] << endl;
-	//copieJeu.getListeConcepteurs()[2] = lj[2]->getListeConcepteurs()[2];
-	//cout << copieJeu.getListeConcepteurs()[2] << endl;
-
-
-
 
 
 	//TODO: Les l'affichage et l'écriture dans le fichier devraient fonctionner.

@@ -28,29 +28,34 @@ public:
 			nElements_ = autreListe.nElements_;
 			capacite_ = autreListe.capacite_;
 
-			//unique_ptr<shared_ptr<T>[]> newElements_ = make_unique<shared_ptr<T>[]>(capacite_);
 			elements_ = make_unique<shared_ptr<T>[]>(capacite_);
 			for (unsigned i = 0; i < nElements_; i++) {
-				/*shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
-				elements_[i] = newElem;*/
-				elements_[i] = autreListe.elements_[i];
+
+				shared_ptr<T> newElem = make_shared<T>(*autreListe.elements_[i]);
+				elements_[i] = newElem; // 1) Permet d'avoir des listes de concepteurs différents pour la copie et le jeu initial ET avoir la même adresse pour le concepteur 1
+
+				//elements_[i] = autreListe.elements_[i]; // 2)
+
+				/*
+					Pour le test sur la copie: 
+					1) Permet d'avoir des listes de concepteurs différents pour la copie et le jeu initial (après changement dans la copie)
+					2) Permet d'avoir la même adresse pour le concepteur 1 dans la copie et le jeu inital
+					-- Nous ne sommes pas capables d'atteindre les deux conditions en même temps
+				*/
 			}			
 			return *this;
 		}
 	}
 
 	// Surcharge d'opérateur []
-	//shared_ptr<T> operator[] (unsigned index) const {	// const ou non??
+	//shared_ptr<T> operator[] (unsigned index) const {	
 	//	return elements_[index];
 	//}
 	shared_ptr<T> operator[] (unsigned index) {	
 		return elements_[index];
 	}
-		// Operateur = pour regler probleme de build: 
-		// Attempting to reference a deleted function 
-		// Constructeur de copie (?)
 
-	//
+
 	//TODO: Méthode pour ajouter un élément à la liste
 	void ajouterElement(const std::shared_ptr<T>& element) {
 		if (nElements_ >= capacite_) {
@@ -92,7 +97,7 @@ public:
 	//TODO: Méthode pour trouver une élément selon un critère (lambda).
 	shared_ptr<T> trouver(function <bool(T&)> critere) {
 		for (unsigned i = 0; i < this->size(); i++) {
-			if (critere(*elements_[i])) {		// 
+			if (critere(*elements_[i])) {		
 				return elements_[i];
 			}
 		}

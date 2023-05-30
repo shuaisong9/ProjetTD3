@@ -41,9 +41,7 @@ public:
 
 	//TODO: Pouvoir accéder à la liste de concepteurs.
 	Liste<Concepteur>& getListeConcepteurs() { return listeConcepteurs_; } // erased const before {}
-		// Ajouter surchage d'operateur [] ??	
-	
-	//void ajouterConcepteur(const std::shared_ptr<Concepteur>& concepteur);
+
 
 
 	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
