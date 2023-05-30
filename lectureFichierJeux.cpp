@@ -30,22 +30,8 @@ string lireString(istream& fichier)
 
 shared_ptr<Concepteur> chercherConcepteur(Liste<Jeu>& listeJeux, string nom)
 {
-	//TODO: Compléter la fonction (équivalent de trouverDesigner du TD2).
-	for (unsigned int i = 0; i < listeJeux.size(); i++) {		
-		shared_ptr<Jeu> ptrJeu = listeJeux[i]; // Pas faire copie...
-		unsigned nbreConcepteurs = ptrJeu->getListeConcepteurs().size();
-		
-		for (unsigned int j = 0; j < nbreConcepteurs; j++) {
-			shared_ptr<Concepteur> ptrConcepteur = ptrJeu->getListeConcepteurs()[j];
-			
-			//Designer* designer = jeu->designers.elements[j];
-			//if (designer->nom == nomDesigner) {
-			//	return designer;
-			//}
-		}
-	}
-	return nullptr;
-	
+	//TODO: ComplÃ©ter la fonction (Ã©quivalent de trouverDesigner du TD2).
+	return {};
 }
 
 shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
@@ -54,8 +40,8 @@ shared_ptr<Concepteur> lireConcepteur(Liste<Jeu>& lj, istream& f)
 	unsigned anneeNaissance = lireUint16(f);
 	string pays             = lireString(f);
 
-	//TODO: Compléter la fonction (équivalent de lireDesigner du TD2).
-	cout << "C: " << nom << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
+	//TODO: ComplÃ©ter la fonction (Ã©quivalent de lireDesigner du TD2).
+	cout << "C: " << nom << endl;  //TODO: Enlever cet affichage temporaire servant Ã  voir que le code fourni lit bien les jeux.
 	return {};
 }
 
@@ -65,11 +51,11 @@ shared_ptr<Jeu> lireJeu(istream& f, Liste<Jeu>& lj)
 	unsigned anneeSortie  = lireUint16(f);
 	string developpeur    = lireString(f);
 	unsigned nConcepteurs = lireUint8(f);
-	//TODO: Compléter la fonction (équivalent de lireJeu du TD2).
+	//TODO: ComplÃ©ter la fonction (Ã©quivalent de lireJeu du TD2).
 	for (unsigned int i = 0; i < nConcepteurs; i++)
 		lireConcepteur(lj, f);
 
-	cout << "J: " << titre << endl;  //TODO: Enlever cet affichage temporaire servant à voir que le code fourni lit bien les jeux.
+	cout << "J: " << titre << endl;  //TODO: Enlever cet affichage temporaire servant Ã  voir que le code fourni lit bien les jeux.
 	return {};
 }
 
@@ -78,10 +64,11 @@ Liste<Jeu> creerListeJeux(const string& nomFichier)
 	ifstream f(nomFichier, ios::binary);
 	f.exceptions(ios::failbit);
 	int nElements = lireUint16(f);
-	//TODO: Compléter la fonction.
+	//TODO: ComplÃ©ter la fonction.
+
 	Liste<Jeu> listeJeux;
 	for ([[maybe_unused]] int i : iter::range(nElements))
-		lireJeu(f, listeJeux);
+		listeJeux.ajouterElement(lireJeu(f, listeJeux));
 
-	return {};
+	return listeJeux;
 }
