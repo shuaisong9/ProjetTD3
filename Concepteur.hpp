@@ -1,18 +1,20 @@
 #pragma once
 #include <string>
 
+
 class Concepteur
 {
 public:
-	//TODO: Un constructeur par défaut et un constructeur paramétré.
-	Concepteur() {}
-	Concepteur(string nom, unsigned anneeNaissance, string pays) { 
-		nom_ = nom;
-		anneeNaissance_ = anneeNaissance;
-		pays_ = pays;			
-	}
+	//TODO: Un constructeur par dï¿½faut et un constructeur paramï¿½trï¿½.
+	Concepteur() { nom_ = "";
+	anneeNaissance_ = 0; 
+	pays_ = ""; };
 
+    Concepteur(std::string nom, unsigned anneeNaissance, std::string pays):
+    nom_(nom),anneeNaissance_(anneeNaissance), pays_(pays){}
 
+	bool operator==(Concepteur concepteur) const { return concepteur.getNom() == nom_; };
+	friend ostream& operator<<(ostream& out, const Concepteur& concepteur);
 
 	const std::string& getNom() const     { return nom_; }
 	void setNom(const std::string& nom)   { nom_ = nom; }
