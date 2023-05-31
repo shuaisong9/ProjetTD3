@@ -5,15 +5,13 @@
 #include <memory>
 #include <functional>
 
-using namespace std;
-
 class Jeu
 {
 public:
-	//TODO: un constructeur par défaut et un constructeur paramétré.
-	Jeu();
-	Jeu(string titre, unsigned annneSortie, string developpeur);
-	~Jeu();
+	//TODO: un constructeur par dï¿½faut et un constructeur paramï¿½trï¿½.
+    Jeu() =default;
+    Jeu(std::string titre, unsigned anneeSortie, std::string developpeur): titre_(titre),
+    anneeSortie_(anneeSortie), developpeur_(developpeur){}
 
 	const std::string& getTitre() const     { return titre_; }
 	void setTitre(const std::string& titre) { titre_ = titre; }
@@ -22,22 +20,30 @@ public:
 	const std::string& getDeveloppeur() const { return developpeur_; }
 	void setDeveloppeur(const std::string& developpeur) { developpeur_ = developpeur; }
 
-	//TODO: Pouvoir accéder à la liste de concepteurs.
-	const Liste<Concepteur>& getListeConcepteurs() const { return listeConcepteurs_; }
-		// Ajouter surchage d'operateur [] ??	
+	//TODO: Pouvoir accï¿½der ï¿½ la liste de concepteurs.
+    Liste<Concepteur>& getConcepteur(){
+		return concepteurs_;
+    }
 
 
-	//TODO: Votre méthode pour trouver un concepteur selon un critère donné par une lambda, en utilisant la méthode de Liste.
-	template <typename PredicatUnaire>
-	auto trouverConcepteur(const PredicatUnaire& critere);
+	//TODO: Votre mï¿½thode pour trouver un concepteur selon un critï¿½re donnï¿½ par une lambda, en utilisant la mï¿½thode de Liste.
 
+	shared_ptr<Concepteur> trouverConcepteur(const function<bool(Concepteur)>& critere) {
+		shared_ptr<Concepteur> ptrConcepteur = nullptr;
+		for (int i = 0; i < concepteurs_.size(); i++) {
+			if (critere(concepteurs_.getElement()[i])) {
+
+			}
+		}
+	}
 
 private:
 	std::string titre_;
 	unsigned anneeSortie_;
 	std::string developpeur_;
 	//TODO: Attribut de la liste des concepteurs du jeu
-		// ptrIntelligent 
-	Liste<Concepteur> listeConcepteurs_;
+    Liste<Concepteur> concepteurs_;
 
 };
+
+//shared_ptr<Concepteur> Jeu::trouverConcepteur(const function<bool(Concepteur)& critere))
