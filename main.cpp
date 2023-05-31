@@ -50,17 +50,18 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv)
 		"\033[0m\n";
 
 	//TODO: Les l'affichage et l'écriture dans le fichier devraient fonctionner.
-	//cout << ligneSeparation << lj;
-	//ofstream("sortie.txt") << lj;
+	cout << ligneSeparation << lj;
+	ofstream("sortie.txt") << lj;
+	cout<<ligneSeparation<<endl;
 
 
 
 
-	//TODO: Compléter le main avec les tests demandés.\
-	// Operator
-	cout << "Titre a indice 2: " << lj[2]->titre;
+	//TODO: Compléter le main avec les tests demandés.
 
-	//TODO: S'assurer qu'aucune ligne de code est non couverte.
-	//NOTE: Il n'est pas nécessaire de couvrir les getters/setters simples fournis; il faut tester si vous en ajoutez ou les modifiez.
-	//NOTE: Pour Liste, qui est générique, on demande de couvrir uniquement pour Liste<Jeu>, pas pour tous les types.
+	cout << "Titre a indice 1: " << lj[1]->titre<<endl;
+	cout << "Nom de son Concepteur" << lj[2]->concepteurs[1]->nom << endl;
+	
+	shared_ptr<Concepteur> concep = lj[0]->trouverConcepteur("Yoshinori Kitase");
+
 }
